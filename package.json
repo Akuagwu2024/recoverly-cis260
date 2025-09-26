@@ -1,0 +1,20 @@
+{
+  "name": "recoverly-cis260",
+  "version": "1.0.0",
+  "description": "**1. Repository URL:**   https://github.com/Akuagwu2024/recoverly-cis260",
+  "main": "script.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.2"
+  }
+}
