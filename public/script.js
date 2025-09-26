@@ -1,0 +1,1 @@
+console.log("Welcome to Recoverly! Start recovering your lost items.");
