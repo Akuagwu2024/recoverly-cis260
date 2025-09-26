@@ -7,3 +7,4 @@ node_modules/
 # Ignore IDE/editor config files
 .vscode/
 .idea/
+node_modules/
