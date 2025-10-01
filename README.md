@@ -32,4 +32,17 @@ This is the **Recoverly** project for CIS 260. It is a community-based platform 
 
 
 **4. Reflection:**  
-Developing Recoverly helped me understand Git branching and file management. Uploading the proposal and organizing the repo worked well. I had trouble with the pull request setup initially, but resolved it by adding a file to the feature branch. One Git/GitHub concept I’d like to learn more about is managing multiple branches and merge conflicts.
+Developing Recoverly helped me understand Git branching and file management. Uploading the proposal and organizing the repo worked well. I had trouble with the pull request setup initially, but resolved it by adding a file to the feature branch. One Git/GitHub concept I’d like to learn more about is managing multiple branches and merge conflicts
+
+### To Run Locally
+
+**Make sure you have MongoDB installed locally** 
+
+Linux: `sudo systemctl start mongod`
+MacOS: `sudo brew services start mongodb-community`
+Docker: `docker run -d -p 27017:27017 --name mongo mongo:latest`
+
+
+`npm install`
+`nmp run dev`
+
