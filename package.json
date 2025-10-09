@@ -8,21 +8,21 @@
     "doc": "docs"
   },
   "scripts": {
-	"dev": "node --env-file=.env server/index.js",
-        "start": "node server/index.js",	
-    	"test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --env-file=.env server/index.js",
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^17.2.2",
-    "express": "^5.1.0",
-    "mongoose": "^8.18.2",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "express-rate-limit": "^7.4.0",
     "helmet": "^7.1.0",
-     "morgan": "^1.10.0",
-     "zod": "^3.23.8"
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.0",
+    "zod": "^3.23.8"
   }
 }

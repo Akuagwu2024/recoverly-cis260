@@ -1,81 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recoverly - Lost & Found Hub</title>
-  <!-- Tailwind CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col items-center p-6">
 
+  <!-- Header -->
   <header class="mb-10 text-center">
-    <h1 class="text-5xl font-bold mb-4">Welcome to Recoverly!</h1>
-    <p class="text-xl text-gray-600">Start your journey to recover lost items.</p>
+    <h1 class="text-5xl font-bold mb-4 text-blue-700">Welcome to Recoverly!</h1>
+    <p class="text-xl text-gray-700">Start your journey to recover lost items.</p>
   </header>
 
+  <!-- Navigation -->
   <nav class="mb-10 flex space-x-6 justify-center">
     <a href="report.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Report Lost/Found</a>
     <a href="search.html" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">Search Items</a>
     <a href="contact.html" class="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 transition">Contact Us</a>
   </nav>
 
-  <main class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+  <!-- Main Content -->
+  <main class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
     <section class="mb-8">
       <h2 class="text-2xl font-semibold mb-4">About Recoverly</h2>
-      <p class="mb-4">
-        Recoverly is your community hub for lost and found items. Use this platform to report lost items, search for missing belongings, or get in touch with the community.
-      </p>
-      <p>
-        We aim to help you recover your items quickly and securely.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-semibold mb-4">Report a Lost or Found Item</h2>
-      <form id="reportForm" class="space-y-6" novalidate>
-        <div>
-          <label for="itemName" class="block mb-1 font-medium">Item Name</label>
-          <input type="text" id="itemName" name="itemName" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <p class="text-red-600 text-sm mt-1 hidden" id="itemNameError">Please enter an item name.</p>
-        </div>
-
-        <div>
-          <label for="status" class="block mb-1 font-medium">Status</label>
-          <select id="status" name="status" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">-- Select --</option>
-            <option value="lost">Lost</option>
-            <option value="found">Found</option>
-          </select>
-          <p class="text-red-600 text-sm mt-1 hidden" id="statusError">Please select Lost or Found.</p>
-        </div>
-
-        <div>
-          <label for="description" class="block mb-1 font-medium">Description</label>
-          <textarea id="description" name="description" rows="4" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-          <p class="text-red-600 text-sm mt-1 hidden" id="descriptionError">Please enter a description.</p>
-        </div>
-
-        <div>
-          <label for="location" class="block mb-1 font-medium">Last Known Location</label>
-          <input type="text" id="location" name="location" required
-            class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <p class="text-red-600 text-sm mt-1 hidden" id="locationError">Please enter the location.</p>
-        </div>
-
-        <button type="submit"
-          class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Submit Report</button>
-      </form>
+      <p>Recoverly is your community hub for lost and found items. Report lost items, search for missing belongings, or get in touch with the community.</p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="mt-12 text-center text-gray-500 text-sm">
     &copy; 2025 Recoverly - Lost & Found Hub
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
