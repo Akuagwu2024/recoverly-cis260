@@ -1,0 +1,32 @@
+Recoverly Submission Checklist
+
+1. Repository & GitHub
+   [ ] Repository URL updated in README.md
+   [ ] Pull Request created if required
+   [ ] All changes committed and pushed
+   [ ] FinalNotes.txt added to docs folder
+
+2. Project Files
+   [ ] index.html updated & visually consistent
+   [ ] report.html form works correctly
+   [ ] search.html live search placeholder works
+   [ ] contact.html shows static contact info, office hours, phone number, address
+   [ ] style.css upgraded with gradients, hover effects, responsive design
+   [ ] script.js handles form submissions, fades, hover animations, and alerts
+
+3. Content
+   [ ] Project Proposal uploaded in docs
+   [ ] README.md reflects project info, structure, instructions
+   [ ] FinalNotes.txt contains final submission notes
+
+4. Functionality & Appearance
+   [ ] Buttons: animated gradient + glow + hover scale
+   [ ] Forms: input fields glow on focus
+   [ ] Feature cards & content: fade-in + hover lift effect
+   [ ] Fully mobile-responsive and professional look
+
+5. Testing
+   [ ] Forms submit alerts correctly
+   [ ] Search box displays “No results yet” initially
+   [ ] Navigation works for all four pages
+   [ ] Footer is consistent on all pages
