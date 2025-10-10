@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Recoverly - Lost & Found Hub</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col items-center p-6">
-
-  <!-- Header -->
-  <header class="mb-10 text-center">
-    <h1 class="text-5xl font-bold mb-4 text-blue-700">Welcome to Recoverly!</h1>
-    <p class="text-xl text-gray-700">Start your journey to recover lost items.</p>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="mb-10 flex space-x-6 justify-center">
-    <a href="report.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Report Lost/Found</a>
-    <a href="search.html" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">Search Items</a>
-    <a href="contact.html" class="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 transition">Contact Us</a>
+<body>
+  <nav>
+    <ul class="navbar">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="report.html">Report</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
 
-  <!-- Main Content -->
-  <main class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">About Recoverly</h2>
-      <p>Recoverly is your community hub for lost and found items. Report lost items, search for missing belongings, or get in touch with the community.</p>
+  <header>
+    <h1>Welcome to <span class="highlight">Recoverly!</span></h1>
+    <p>Your trusted Lost & Found Hub — helping people reconnect with their belongings.</p>
+    <div class="button-group">
+      <a href="report.html" class="btn-primary">Report Lost/Found</a>
+      <a href="search.html" class="btn-secondary">Search Items</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="content fade-in">
+      <h2>About Recoverly</h2>
+      <p>
+        Recoverly makes it easier than ever to report lost items, browse found listings,
+        and help others get reunited with their belongings.
+      </p>
+      <p>
+        Our mission is simple: create a connected community where honesty and helpfulness thrive.
+      </p>
+    </section>
+
+    <section class="features">
+      <div class="feature-card fade-in">
+        <h3>🕵️‍♀️ Easy Searching</h3>
+        <p>Quickly find reported items using our smart search tool.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <h3>📱 Simple Reporting</h3>
+        <p>Submit lost or found item details in seconds.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <h3>🤝 Community Driven</h3>
+        <p>Help others while increasing your chances of recovering lost items.</p>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="mt-12 text-center text-gray-500 text-sm">
-    &copy; 2025 Recoverly - Lost & Found Hub
+  <footer>
+    &copy; 2025 <strong>Recoverly</strong> - Lost & Found Hub
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

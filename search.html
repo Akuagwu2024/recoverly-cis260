@@ -1,56 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Search Lost/Found Items | Recoverly</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search Items | Recoverly</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col items-center p-6">
-
-  <!-- Header -->
-  <header class="mb-10 text-center">
-    <h1 class="text-5xl font-bold mb-4 text-green-700">Search Lost & Found Items</h1>
-    <p class="text-xl text-gray-700">Browse through reported items in your community.</p>
-  </header>
-
-  <!-- Navigation -->
-  <nav class="mb-10 flex space-x-6 justify-center">
-    <a href="index.html" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Home</a>
-    <a href="report.html" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">Report Item</a>
-    <a href="contact.html" class="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700 transition">Contact Us</a>
+<body>
+  <nav>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="report.html">Report</a></li>
+      <li><a href="search.html" class="active">Search</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
 
-  <!-- Search Form -->
-  <main class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl space-y-6">
-    <form id="searchForm" class="flex flex-col space-y-4">
-      <input type="text" id="searchInput" placeholder="Search by item name, location, or status"
-             class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      <button type="submit" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">
-        Search
-      </button>
-    </form>
+  <header>
+    <h1>Search for Lost or Found Items</h1>
+    <p>Find your item quickly — just enter a name or keyword.</p>
+  </header>
 
-    <div id="results" class="space-y-4 mt-6">
-      <div class="card">
-        <h3 class="font-bold text-lg text-green-700">Lost Wallet</h3>
-        <p>Location: Campus Library</p>
-        <p>Status: Lost</p>
+  <main>
+    <section class="content fade-in">
+      <h2>Item Search</h2>
+      <input type="text" id="searchBox" class="search-box" placeholder="Type item name...">
+
+      <div id="results">
+        <p style="text-align:center; margin-top:20px; color:#555;">No results yet. Try searching above!</p>
       </div>
-      <div class="card">
-        <h3 class="font-bold text-lg text-green-700">Found Keys</h3>
-        <p>Location: Parking Lot</p>
-        <p>Status: Found</p>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="mt-12 text-center text-gray-500 text-sm">
-    &copy; 2025 Recoverly - Lost & Found Hub
+  <footer>
+    &copy; 2025 <strong>Recoverly</strong> - Lost & Found Hub
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
