@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Search — Recoverly</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Search Items | Recoverly</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <div class="brand"><a href="index.html">Recoverly</a></div>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="report.html">Report</a></li>
-          <li><a href="search.html" class="active">Search</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+  <nav>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="report.html">Report</a></li>
+      <li><a href="search.html" class="active">Search</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Search Listings</h1>
+    <p>Type a keyword to begin searching.</p>
   </header>
 
-  <main class="wrap content">
-    <section class="card">
-      <h1>Search reports</h1>
-      <p class="intro">Enter a short keyword, item name, or location. Search happens in this browser for saved reports.</p>
+  <main>
+    <section class="content">
+      <h2>Find an Item</h2>
+      <input type="text" id="searchBox" class="search-box" placeholder="e.g., keys, laptop, notebook">
 
-      <div class="search-block">
-        <input id="searchBox" type="search" placeholder="e.g. keys, wallet, red backpack" />
+      <div id="results">
+        <p style="text-align:center; margin-top:20px; color:#555;">No results yet. Try searching above.</p>
       </div>
-
-      <div id="results" class="list">
-        <p class="small">No results yet.</p>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Notes</h2>
-      <p class="small">Search is case-insensitive and matches across name, description, location, and status fields.</p>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap"><p>Recoverly — City Colleges prototype. © 2025</p></div>
+  <footer>
+    &copy; 2025 Recoverly | Kennedy-King College Prototype
   </footer>
 
   <script src="script.js"></script>

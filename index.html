@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Recoverly — Lost & Found Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recoverly | City Colleges Lost & Found</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <div class="brand"><a href="index.html">Recoverly</a></div>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="report.html">Report</a></li>
-          <li><a href="search.html">Search</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+  <nav>
+    <ul class="navbar">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="report.html">Report</a></li>
+      <li><a href="search.html">Search</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Recoverly</h1>
+    <p>A shared Lost & Found hub for all seven City Colleges of Chicago.</p>
+    <div class="button-group">
+      <a href="report.html" class="btn-primary">Report an Item</a>
+      <a href="search.html" class="btn-secondary">Search Listings</a>
     </div>
   </header>
 
-  <main class="wrap content">
-    <section class="card">
-      <h1>Recoverly</h1>
-      <p class="intro">A simple Lost & Found hub for the City Colleges of Chicago. Built by students to help students, staff and faculty recover misplaced items.</p>
-
-      <p class="note">This prototype stores data in the browser so it is safe to demo. A campus deployment can add a shared backend if desired.</p>
-
-      <div class="actions">
-        <a class="btn" href="report.html">Report an item</a>
-        <a class="btn ghost" href="search.html">Search items</a>
-      </div>
+  <main>
+    <section class="content">
+      <h2>About Recoverly</h2>
+      <p>
+        Built by students, for students — Recoverly is a practical solution to a common campus problem.
+        Whether you’ve lost something or found something, this platform helps you take action quickly.
+      </p>
+      <p>
+        Our mission is to foster a culture of honesty and helpfulness across the CCC network.
+      </p>
     </section>
 
-    <section class="card features">
-      <h2>Purpose</h2>
-
-      <div class="feature">
-        <h3>Report</h3>
-        <p>Post a concise report for a lost or found item with contact details so matches can be made.</p>
+    <section class="features">
+      <div class="feature-card">
+        <h3>Search Efficiently</h3>
+        <p>Use keywords to locate items posted by others across CCC campuses.</p>
       </div>
-
-      <div class="feature">
-        <h3>Search</h3>
-        <p>Search saved reports by keyword, location, or status (lost / found).</p>
+      <div class="feature-card">
+        <h3>Report Simply</h3>
+        <p>Submit a lost or found item in under a minute — no login required.</p>
       </div>
-
-      <div class="feature">
-        <h3>Contact</h3>
-        <p>Leave site feedback or notify the project lead about recovered items.</p>
+      <div class="feature-card">
+        <h3>Built for Community</h3>
+        <p>Every report helps someone. Every search brings hope. Every recovery builds trust.</p>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>Recoverly — City Colleges of Chicago prototype. © 2025</p>
-    </div>
+  <footer>
+    &copy; 2025 Recoverly | Kennedy-King College Prototype
   </footer>
 
   <script src="script.js"></script>

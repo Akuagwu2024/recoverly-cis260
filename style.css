@@ -1,57 +1,153 @@
-/* Colors */
 :root {
-  --maroon: #7c1c1c;
-  --light-gray: #d9d9d9;
-  --dark-gray: #333333;
+  --maroon: #7b1f3b;
+  --gray: #4e4e4e;
+  --light-gray: #f5f5f5;
   --white: #ffffff;
-  --bg: #fbfbfb;
+  --text-dark: #2d2d2d;
+  --text-light: #ffffff;
 }
 
-/* Base */
-* { box-sizing: border-box; }
-html,body { height: 100%; margin: 0; font-family: "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial; color: var(--dark-gray); background: var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-.wrap { max-width: 980px; margin: 0 auto; padding: 12px; }
-
-/* Header / nav */
-.site-header { border-bottom: 1px solid var(--light-gray); background: var(--white); }
-.brand a { display: inline-block; padding: 14px 6px; color: var(--maroon); text-decoration: none; font-weight: 700; font-size: 1.25rem; }
-.main-nav { float: right; }
-.main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; align-items: center; }
-.main-nav a { color: var(--dark-gray); text-decoration: none; padding: 8px 10px; border-radius: 6px; font-weight: 600; }
-.main-nav a.active, .main-nav a:hover { background: var(--light-gray); color: var(--maroon); }
-
-/* Content / cards */
-.content { padding: 20px 0; }
-.card { background: var(--white); border: 1px solid var(--light-gray); border-radius: 8px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 0 rgba(0,0,0,0.02); }
-.intro { margin-top: 6px; color: #4a4a4a; }
-.note { color: #555; font-size: 0.95rem; margin-top: 10px; }
-
-/* Actions / buttons */
-.actions { margin-top: 14px; display:flex; gap:10px; }
-.btn { display:inline-block; padding: 10px 14px; background: var(--maroon); color: var(--white); text-decoration: none; border-radius: 8px; border: 0; cursor: pointer; font-weight: 700; }
-.btn.ghost, .btn.ghost:visited { background: transparent; border: 1px solid var(--light-gray); color: var(--maroon); }
-
-/* Features */
-.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; margin-top: 12px; }
-.feature h3 { margin: 0 0 6px 0; font-size: 1.05rem; }
-
-/* Forms */
-.form label { display:block; margin-top: 12px; font-weight: 600; }
-.form input[type="text"], .form input[type="email"], .form input[type="search"], .form select, .form textarea {
-  width:100%; padding: 10px; margin-top: 6px; border-radius: 6px; border: 1px solid var(--light-gray); font-size: 1rem; background: #fff;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-gray);
+  color: var(--text-dark);
+  line-height: 1.6;
 }
-.form-actions { display:flex; gap: 8px; margin-top: 12px; }
 
-/* Lists */
-.list .item { border: 1px solid var(--light-gray); border-radius: 6px; padding: 10px; margin-bottom: 8px; background: #fff; }
-.small { color: #666; font-size: 0.95rem; }
+nav {
+  background-color: var(--maroon);
+  padding: 15px 0;
+  text-align: center;
+}
 
-/* Footer */
-.site-footer { border-top: 1px solid var(--light-gray); background: transparent; padding: 18px 0; text-align: center; color: #555; margin-top: 20px; }
+.navbar {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
 
-/* Responsive */
-@media (max-width: 700px) {
-  .main-nav { float: none; margin-top: 8px; }
-  .actions { flex-direction: column; }
-  .features { grid-template-columns: 1fr; }
+.navbar a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a.active {
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--gray);
+  color: var(--white);
+  padding: 60px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: var(--maroon);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background-color: var(--gray);
+}
+
+main {
+  padding: 30px 20px;
+}
+
+.content {
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  background-color: var(--white);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.feature-card {
+  background-color: var(--white);
+  width: 250px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--maroon);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.contact-info {
+  margin-top: 30px;
+  background-color: var(--light-gray);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+footer {
+  background-color: var(--maroon);
+  color: var(--white);
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
 }
