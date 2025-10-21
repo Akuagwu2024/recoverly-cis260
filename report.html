@@ -1,53 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Report Lost or Found Item | Recoverly</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Report Item — Recoverly</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <ul class="navbar">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="report.html" class="active">Report</a></li>
-      <li><a href="search.html">Search</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header>
-    <h1>Report Lost or Found Item</h1>
-    <p>Help the community by reporting lost or found items here.</p>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Recoverly</a></div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="report.html" class="active">Report</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="content fade-in">
-      <h2>Submit a Report</h2>
-      <form id="reportForm" novalidate>
-        <label for="itemName">Item Name</label>
-        <input type="text" id="itemName" name="itemName" required placeholder="e.g., Wallet, Phone, Keys">
+  <main class="wrap content">
+    <section class="card">
+      <h1>Report a lost or found item</h1>
+      <p class="intro">Please be accurate. The clearer your report, the better the chance someone will recognise the item.</p>
 
-        <label for="status">Status</label>
+      <form id="reportForm" class="form" autocomplete="off" novalidate>
+        <label for="itemName">Item name (required)</label>
+        <input id="itemName" name="itemName" type="text" maxlength="120" required />
+
+        <label for="status">Status (required)</label>
         <select id="status" name="status" required>
-          <option value="">-- Select --</option>
+          <option value="">-- choose --</option>
           <option value="lost">Lost</option>
           <option value="found">Found</option>
         </select>
 
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="4" placeholder="Provide any identifying details..."></textarea>
+        <textarea id="description" name="description" rows="4" maxlength="600"></textarea>
 
-        <label for="location">Last Known Location</label>
-        <input type="text" id="location" name="location" placeholder="Where was it lost or found?">
+        <label for="location">Last known location</label>
+        <input id="location" name="location" type="text" maxlength="120" />
 
-        <button type="submit" class="btn-primary">Submit Report</button>
+        <label for="reporter">Your name or initials (required)</label>
+        <input id="reporter" name="reporter" type="text" maxlength="80" required />
+
+        <label for="contact">Contact (email or phone — required)</label>
+        <input id="contact" name="contact" type="text" maxlength="80" required />
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Submit</button>
+          <button type="button" id="clearReports" class="btn ghost">Clear local reports</button>
+        </div>
       </form>
+    </section>
+
+    <section class="card">
+      <h2>Recent reports (local)</h2>
+      <div id="recentList" class="list">
+        <p class="small">No reports yet.</p>
+      </div>
+      <p class="small">This prototype saves reports in your browser only. A campus deployment would centralize reports on a secure server.</p>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 <strong>Recoverly</strong> - Lost & Found Hub
+  <footer class="site-footer">
+    <div class="wrap"><p>Recoverly — City Colleges prototype. © 2025</p></div>
   </footer>
 
   <script src="script.js"></script>

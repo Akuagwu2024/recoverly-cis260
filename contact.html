@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Us | Recoverly</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Recoverly</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <ul class="navbar">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="report.html">Report</a></li>
-      <li><a href="search.html">Search</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header>
-    <h1>Contact Us</h1>
-    <p>We’d love to hear from you! Reach out for support or suggestions.</p>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Recoverly</a></div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="report.html">Report</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="content fade-in">
-      <h2>Send a Message</h2>
-      <form id="contactForm">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+  <main class="wrap content">
+    <section class="card">
+      <h1>Contact & feedback</h1>
+      <p class="intro">Send a short message about the site, a recovered item, or an improvement suggestion for campus use.</p>
 
-        <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      <form id="contactForm" class="form" autocomplete="off" novalidate>
+        <label for="name">Name (required)</label>
+        <input id="name" name="name" type="text" maxlength="80" required />
 
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+        <label for="email">Email (required)</label>
+        <input id="email" name="email" type="email" maxlength="120" required />
 
-        <button type="submit" class="btn-primary">Send Message</button>
+        <label for="message">Message (required)</label>
+        <textarea id="message" name="message" rows="5" maxlength="1000" required></textarea>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Send</button>
+          <button type="button" id="clearMessages" class="btn ghost">Clear local messages</button>
+        </div>
       </form>
+    </section>
 
-      <div class="contact-info">
-        <h3>📍 Static Office Address</h3>
-        <p>1234 Recoverly Lane, Suite 202<br>Chicago, IL 60605</p>
-
-        <h3>📞 Static Contact Number</h3>
-        <p>(312) 555-9876</p>
-
-        <h3>🕒 Office Hours</h3>
-        <p>
-          Monday – Friday: 9 AM – 10 PM<br>
-          Saturday: 8 AM – 10 PM<br>
-          Sunday: Closed
-        </p>
-      </div>
+    <section class="card">
+      <h2>Saved messages</h2>
+      <div id="messagesList" class="list"><p class="small">No messages yet.</p></div>
+      <p class="small">Messages are stored locally in this demo. A campus deployment would centralize feedback on a secure server.</p>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 <strong>Recoverly</strong> - Lost & Found Hub
+  <footer class="site-footer">
+    <div class="wrap"><p>Recoverly — City Colleges prototype. © 2025</p></div>
   </footer>
 
   <script src="script.js"></script>

@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Recoverly - Lost & Found Hub</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recoverly — Lost & Found Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <ul class="navbar">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="report.html">Report</a></li>
-      <li><a href="search.html">Search</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header>
-    <h1>Welcome to <span class="highlight">Recoverly!</span></h1>
-    <p>Your trusted Lost & Found Hub — helping people reconnect with their belongings.</p>
-    <div class="button-group">
-      <a href="report.html" class="btn-primary">Report Lost/Found</a>
-      <a href="search.html" class="btn-secondary">Search Items</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand"><a href="index.html">Recoverly</a></div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="report.html">Report</a></li>
+          <li><a href="search.html">Search</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <main>
-    <section class="content fade-in">
-      <h2>About Recoverly</h2>
-      <p>
-        Recoverly makes it easier than ever to report lost items, browse found listings,
-        and help others get reunited with their belongings.
-      </p>
-      <p>
-        Our mission is simple: create a connected community where honesty and helpfulness thrive.
-      </p>
+  <main class="wrap content">
+    <section class="card">
+      <h1>Recoverly</h1>
+      <p class="intro">A simple Lost & Found hub for the City Colleges of Chicago. Built by students to help students, staff and faculty recover misplaced items.</p>
+
+      <p class="note">This prototype stores data in the browser so it is safe to demo. A campus deployment can add a shared backend if desired.</p>
+
+      <div class="actions">
+        <a class="btn" href="report.html">Report an item</a>
+        <a class="btn ghost" href="search.html">Search items</a>
+      </div>
     </section>
 
-    <section class="features">
-      <div class="feature-card fade-in">
-        <h3>🕵️‍♀️ Easy Searching</h3>
-        <p>Quickly find reported items using our smart search tool.</p>
+    <section class="card features">
+      <h2>Purpose</h2>
+
+      <div class="feature">
+        <h3>Report</h3>
+        <p>Post a concise report for a lost or found item with contact details so matches can be made.</p>
       </div>
-      <div class="feature-card fade-in">
-        <h3>📱 Simple Reporting</h3>
-        <p>Submit lost or found item details in seconds.</p>
+
+      <div class="feature">
+        <h3>Search</h3>
+        <p>Search saved reports by keyword, location, or status (lost / found).</p>
       </div>
-      <div class="feature-card fade-in">
-        <h3>🤝 Community Driven</h3>
-        <p>Help others while increasing your chances of recovering lost items.</p>
+
+      <div class="feature">
+        <h3>Contact</h3>
+        <p>Leave site feedback or notify the project lead about recovered items.</p>
       </div>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 <strong>Recoverly</strong> - Lost & Found Hub
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Recoverly — City Colleges of Chicago prototype. © 2025</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
