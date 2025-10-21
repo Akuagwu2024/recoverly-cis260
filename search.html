@@ -18,16 +18,32 @@
 
   <header>
     <h1>Search Listings</h1>
-    <p>Type a keyword to begin searching.</p>
+    <p>Use keywords, filters, or sort options to find your item.</p>
   </header>
 
   <main>
     <section class="content">
       <h2>Find an Item</h2>
-      <input type="text" id="searchBox" class="search-box" placeholder="e.g., keys, laptop, notebook">
 
-      <div id="results">
-        <p style="text-align:center; margin-top:20px; color:#555;">No results yet. Try searching above.</p>
+      <input type="text" id="searchBox" class="search-box" placeholder="e.g., keys, laptop, notebook" />
+
+      <div style="margin-top: 20px;">
+        <label for="statusFilter"><strong>Filter by Status:</strong></label>
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+
+        <label for="sortOrder" style="margin-left: 20px;"><strong>Sort by:</strong></label>
+        <select id="sortOrder">
+          <option value="asc">Item Name A–Z</option>
+          <option value="desc">Item Name Z–A</option>
+        </select>
+      </div>
+
+      <div id="results" style="margin-top: 30px;">
+        <p style="text-align:center; color:#555;">No results yet. Try searching above.</p>
       </div>
     </section>
   </main>
