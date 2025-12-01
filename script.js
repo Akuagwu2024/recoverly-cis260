@@ -1,227 +1,190 @@
+// -----------------------------
+// Report Form Handling
+// -----------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // Helpers
-  // =========================
-  function getReports() {
-    return JSON.parse(localStorage.getItem("reports")) || [];
-  }
-  function setReports(reports) {
-    localStorage.setItem("reports", JSON.stringify(reports));
-  }
-  function isCccEmail(email) {
-    return typeof email === "string" && email.trim().toLowerCase().endsWith("@ccc.edu");
-  }
-  function getSemesterCounter() {
-    return parseInt(localStorage.getItem("semesterReunited") || "0", 10);
-  }
-  function setSemesterCounter(n) {
-    localStorage.setItem("semesterReunited", String(n));
-  }
-
-  // =========================
-  // Report Form Submission
-  // =========================
   const reportForm = document.getElementById("reportForm");
   if (reportForm) {
     reportForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const email = reportForm.reportEmail ? reportForm.reportEmail.value.trim() : "";
-      const verified = email ? isCccEmail(email) : false;
+      const itemName = document.getElementById("itemName").value.trim();
+      const status = document.getElementById("status").value;
+      const campus = document.getElementById("campus").value;
+      const category = document.getElementById("category").value;
+      const description = document.getElementById("description").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const email = document.getElementById("reportEmail").value.trim();
 
-      if (email && !verified) {
-        alert("Please use a valid @ccc.edu email for verification, or leave it blank.");
+      if (!itemName || !status || !campus || !category || !description || !location) {
+        alert("Please fill out all required fields.");
         return;
       }
 
-      const newReport = {
-        itemName: reportForm.itemName.value.trim(),
-        status: reportForm.status.value,
-        description: reportForm.description.value.trim(),
-        location: reportForm.location.value.trim(),
-        campus: reportForm.campus ? reportForm.campus.value : "",
-        category: reportForm.category ? reportForm.category.value : "other",
-        emailVerified: verified,
-        reunited: false,
-        createdAt: Date.now()
+      if (email && !email.endsWith("@ccc.edu")) {
+        alert("Please use a valid @ccc.edu email address.");
+        return;
+      }
+
+      const item = {
+        itemName,
+        status,
+        campus,
+        category,
+        description,
+        location,
+        email,
+        date: new Date().toLocaleString()
       };
 
-      const existingReports = getReports();
-      existingReports.push(newReport);
-      setReports(existingReports);
+      let items = JSON.parse(localStorage.getItem("items")) || [];
+      items.push(item);
+      localStorage.setItem("items", JSON.stringify(items));
 
-      alert("Your report has been submitted.");
+      alert("Report submitted successfully!");
       reportForm.reset();
     });
   }
+});
 
-  // =========================
-  // Contact Form Submission (CCC email nudge)
-  // =========================
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const emailInput = document.getElementById("email");
-      const email = emailInput ? emailInput.value.trim() : "";
-
-      if (email && !isCccEmail(email)) {
-        alert("Tip: Use your @ccc.edu email so staff can verify you're part of CCC.");
-      } else {
-        alert("Thanks for your message. We'll be in touch.");
-      }
-
-      contactForm.reset();
-    });
-  }
-
-  // =========================
-  // Search with Filters and Sorting
-  // =========================
+// -----------------------------
+// Search Page Handling
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
   const searchBox = document.getElementById("searchBox");
-  const resultsDiv = document.getElementById("results");
   const statusFilter = document.getElementById("statusFilter");
-  const sortOrder = document.getElementById("sortOrder");
   const campusFilter = document.getElementById("campusFilter");
   const categoryFilter = document.getElementById("categoryFilter");
+  const sortOrder = document.getElementById("sortOrder");
+  const results = document.getElementById("results");
 
   function renderResults() {
-    const storedReports = getReports();
-    const query = searchBox ? searchBox.value.trim().toLowerCase() : "";
-    const status = statusFilter ? statusFilter.value : "all";
-    const sort = sortOrder ? sortOrder.value : "asc";
-    const campus = campusFilter ? campusFilter.value : "all";
-    const category = categoryFilter ? categoryFilter.value : "all";
+    let items = JSON.parse(localStorage.getItem("items")) || [];
+    let query = searchBox ? searchBox.value.toLowerCase() : "";
 
-    let filtered = storedReports.filter((item) =>
-      item.itemName.toLowerCase().includes(query)
-    );
+    items = items.filter(item => {
+      let matchesQuery = !query || item.itemName.toLowerCase().includes(query) || item.description.toLowerCase().includes(query);
+      let matchesStatus = !statusFilter || statusFilter.value === "all" || item.status === statusFilter.value;
+      let matchesCampus = !campusFilter || campusFilter.value === "all" || item.campus === campusFilter.value;
+      let matchesCategory = !categoryFilter || categoryFilter.value === "all" || item.category === categoryFilter.value;
+      return matchesQuery && matchesStatus && matchesCampus && matchesCategory;
+    });
 
-    if (status !== "all") {
-      filtered = filtered.filter((item) => (status === "reunited" ? item.reunited : item.status === status));
-    }
-    if (campus !== "all") {
-      filtered = filtered.filter((item) => item.campus === campus);
-    }
-    if (category !== "all") {
-      filtered = filtered.filter((item) => item.category === category);
-    }
-
-    if (sort === "asc") {
-      filtered.sort((a, b) => a.itemName.localeCompare(b.itemName));
+    if (sortOrder && sortOrder.value === "desc") {
+      items.sort((a, b) => b.itemName.localeCompare(a.itemName));
     } else {
-      filtered.sort((a, b) => b.itemName.localeCompare(a.itemName));
+      items.sort((a, b) => a.itemName.localeCompare(b.itemName));
     }
 
-    if (!resultsDiv) return;
-    resultsDiv.innerHTML = "";
-
-    if (filtered.length === 0) {
-      const safeQuery = query || "your search";
-      resultsDiv.innerHTML = `<p style="text-align:center; color:#555;">No matches found for "<strong>${safeQuery}</strong>".</p>`;
-    } else {
-      const list = document.createElement("ul");
-      list.style.listStyle = "none";
-      list.style.padding = "0";
-
-      filtered.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "item-card";
-        li.innerHTML = `
-          <strong>${item.itemName}</strong> ${item.reunited ? '(reunited)' : `(${item.status})`}<br>
-          <em>${item.description}</em><br>
-          <span class="item-meta">Location: ${item.location} • Campus: ${item.campus || 'N/A'} • Category: ${item.category || 'other'}</span>
-        `;
-        list.appendChild(li);
-      });
-
-      resultsDiv.appendChild(list);
+    if (results) {
+      results.innerHTML = "";
+      if (items.length === 0) {
+        results.innerHTML = "<p>No items found.</p>";
+      } else {
+        items.forEach(item => {
+          const div = document.createElement("div");
+          div.className = "item-card";
+          div.innerHTML = `
+            <h3>${item.itemName}</h3>
+            <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
+            <p>${item.description}</p>
+            <p><em>Last seen: ${item.location}</em></p>
+            <p><small>Reported: ${item.date}</small></p>
+          `;
+          results.appendChild(div);
+        });
+      }
     }
   }
 
-  if (searchBox && resultsDiv) {
-    searchBox.addEventListener("input", renderResults);
-    statusFilter.addEventListener("change", renderResults);
-    sortOrder.addEventListener("change", renderResults);
-    if (campusFilter) campusFilter.addEventListener("change", renderResults);
-    if (categoryFilter) categoryFilter.addEventListener("change", renderResults);
-    renderResults();
+  if (searchBox) searchBox.addEventListener("input", renderResults);
+  if (statusFilter) statusFilter.addEventListener("change", renderResults);
+  if (campusFilter) campusFilter.addEventListener("change", renderResults);
+  if (categoryFilter) categoryFilter.addEventListener("change", renderResults);
+  if (sortOrder) sortOrder.addEventListener("change", renderResults);
+
+  renderResults();
+});
+
+// -----------------------------
+// Dashboard Page Handling
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const dashboard = document.getElementById("dashboardItems");
+  if (dashboard) {
+    let items = JSON.parse(localStorage.getItem("items")) || [];
+
+    function renderDashboard() {
+      dashboard.innerHTML = "";
+      if (items.length === 0) {
+        dashboard.innerHTML = "<p>No reports yet.</p>";
+      } else {
+        items.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = "item-card";
+          div.innerHTML = `
+            <h3>${item.itemName}</h3>
+            <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
+            <p>${item.description}</p>
+            <p><em>Last seen: ${item.location}</em></p>
+            <p><small>Reported: ${item.date}</small></p>
+            <div class="item-actions">
+              <button class="mark-reunited">Mark Reunited</button>
+              <button class="delete-item">Delete</button>
+            </div>
+          `;
+          div.querySelector(".mark-reunited").addEventListener("click", () => {
+            item.status = "reunited";
+            localStorage.setItem("items", JSON.stringify(items));
+            incrementCounter();
+            renderDashboard();
+          });
+          div.querySelector(".delete-item").addEventListener("click", () => {
+            items.splice(index, 1);
+            localStorage.setItem("items", JSON.stringify(items));
+            renderDashboard();
+          });
+          dashboard.appendChild(div);
+        });
+      }
+    }
+
+    renderDashboard();
   }
+});
 
-  // =========================
-  // Dashboard rendering and actions
-  // =========================
-  const dashResults = document.getElementById("dashResults");
-  const campusFilterDash = document.getElementById("campusFilter");
-  const categoryFilterDash = document.getElementById("categoryFilter");
-  const statusFilterDash = document.getElementById("statusFilterDash");
+// -----------------------------
+// Community Counter
+// -----------------------------
+function incrementCounter() {
+  let count = parseInt(localStorage.getItem("reunitedCount") || "0", 10);
+  count++;
+  localStorage.setItem("reunitedCount", count);
+  const counter = document.getElementById("semesterCounter");
+  if (counter) counter.textContent = count;
+}
 
-  function renderDashboard() {
-    if (!dashResults) return;
-    const reports = getReports();
+document.addEventListener("DOMContentLoaded", () => {
+  const counter = document.getElementById("semesterCounter");
+  if (counter) {
+    counter.textContent = localStorage.getItem("reunitedCount") || "0";
+  }
+});
 
-    const campus = campusFilterDash ? campusFilterDash.value : "all";
-    const category = categoryFilterDash ? categoryFilterDash.value : "all";
-    const status = statusFilterDash ? statusFilterDash.value : "all";
+// -----------------------------
+// Sidebar Tab Switching (Homepage)
+// -----------------------------
+function openSection(sectionId) {
+  const contents = document.querySelectorAll(".tabcontent");
+  contents.forEach(c => c.style.display = "none");
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.style.display = "block";
+  }
+}
 
-    let filtered = reports.slice();
-
-    if (campus !== "all") filtered = filtered.filter(r => r.campus === campus);
-    if (category !== "all") filtered = filtered.filter(r => r.category === category);
-    if (status !== "all") {
-      filtered = filtered.filter(r => {
-        if (status === "reunited") return r.reunited === true;
-        return r.status === status && r.reunited !== true;
-      });
-    }
-
-    dashResults.innerHTML = "";
-    if (filtered.length === 0) {
-      dashResults.innerHTML = `<p style="text-align:center; color:#555;">No items found for selected filters.</p>`;
-      return;
-    }
-
-    filtered.forEach((item) => {
-      const card = document.createElement("div");
-      card.className = "item-card";
-      card.innerHTML = `
-        <strong>${item.itemName}</strong> ${item.reunited ? '(reunited)' : `(${item.status})`}<br>
-        <em>${item.description}</em><br>
-        <span class="item-meta">Location: ${item.location} • Campus: ${item.campus || 'N/A'} • Category: ${item.category || 'other'}</span>
-        <div class="item-actions">
-          <button class="mark-reunited">Mark reunited</button>
-          <button class="delete-item" style="margin-left:8px;">Delete</button>
-        </div>
-      `;
-
-      const reportsIndex = reports.findIndex(r =>
-        r.itemName === item.itemName &&
-        r.description === item.description &&
-        r.location === item.location &&
-        r.createdAt === item.createdAt
-      );
-
-      const markBtn = card.querySelector(".mark-reunited");
-      markBtn.addEventListener("click", () => {
-        const currentReports = getReports();
-        if (reportsIndex > -1) {
-          const wasReunited = currentReports[reportsIndex].reunited === true;
-          currentReports[reportsIndex].reunited = true;
-          setReports(currentReports);
-          if (!wasReunited) {
-            setSemesterCounter(getSemesterCounter() + 1);
-          }
-        }
-        renderDashboard();
-        updateCounterDisplay();
-      });
-
-      const delBtn = card.querySelector(".delete-item");
-      delBtn.addEventListener("click", () => {
-        const currentReports = getReports();
-        if (reportsIndex > -1) {
-          currentReports.splice(reportsIndex, 1);
-          setReports(currentReports);
-        }
-        renderDashboard();
-        render
+// Show "About" by default on homepage
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("about")) {
+    openSection("about");
+  }
+});
