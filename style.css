@@ -1,153 +1,188 @@
 :root {
-  --maroon: #7b1f3b;
-  --gray: #4e4e4e;
-  --light-gray: #f5f5f5;
+  --maroon: #800000;
+  --gray: #555555;
   --white: #ffffff;
-  --text-dark: #2d2d2d;
-  --text-light: #ffffff;
+  --light-gray: #f9f9f9;
 }
 
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--light-gray);
-  color: var(--text-dark);
-  line-height: 1.6;
+  color: #333;
 }
 
-nav {
-  background-color: var(--maroon);
-  padding: 15px 0;
-  text-align: center;
-}
-
+/* Navigation */
 .navbar {
   list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  background-color: var(--maroon);
+  padding: 10px;
   margin: 0;
-  padding: 0;
 }
-
+.navbar li {
+  margin-right: 20px;
+}
 .navbar a {
-  color: var(--text-light);
+  color: var(--white);
   text-decoration: none;
-  font-weight: bold;
 }
-
 .navbar a.active {
+  font-weight: bold;
   text-decoration: underline;
 }
 
+/* Header */
 header {
+  text-align: center;
+  padding: 20px;
   background-color: var(--gray);
   color: var(--white);
-  padding: 60px 20px;
-  text-align: center;
 }
-
 header h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
+  margin: 0;
 }
-
 .button-group {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
-.btn-primary,
-.btn-secondary {
+/* Buttons */
+.btn-primary, .btn-secondary {
   display: inline-block;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
+  padding: 10px 16px;
   border-radius: 5px;
   text-decoration: none;
-  font-weight: bold;
+  margin: 5px;
+}
+.btn-primary {
   background-color: var(--maroon);
   color: var(--white);
 }
-
 .btn-secondary {
-  background-color: var(--gray);
-}
-
-main {
-  padding: 30px 20px;
-}
-
-.content {
-  max-width: 700px;
-  margin: 0 auto 40px auto;
   background-color: var(--white);
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
 }
 
+/* Content sections */
+.content {
+  padding: 20px;
+}
 .features {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-around;
+  padding: 20px;
 }
-
 .feature-card {
   background-color: var(--white);
-  width: 250px;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  width: 30%;
+  margin-bottom: 20px;
 }
 
+/* Success stories */
+.stories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.story {
+  background-color: var(--white);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  width: 45%;
+}
+.story-img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+.story-title {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+.story-text {
+  font-size: 0.95em;
+  color: #444;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+}
 form label {
-  display: block;
-  margin-top: 15px;
+  margin-top: 10px;
   font-weight: bold;
 }
-
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 10px;
+form input, form select, form textarea {
+  padding: 8px;
   margin-top: 5px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
+  border-radius: 4px;
 }
-
 form button {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 15px;
+  padding: 10px;
   background-color: var(--maroon);
   color: var(--white);
   border: none;
   border-radius: 5px;
-  font-weight: bold;
+  cursor: pointer;
+}
+form button:hover {
+  background-color: #a00000;
 }
 
-.search-box {
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+/* Item cards (search + dashboard) */
+.item-card {
+  background-color: var(--white);
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
-
-.contact-info {
-  margin-top: 30px;
-  background-color: var(--light-gray);
-  padding: 20px;
-  border-radius: 8px;
+.item-meta {
+  font-size: 0.85em;
+  color: #666;
 }
-
-footer {
-  background-color: var(--maroon);
+.item-actions {
+  margin-top: 8px;
+}
+.item-actions button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.item-actions .mark-reunited {
+  background-color: green;
   color: var(--white);
+}
+.item-actions .delete-item {
+  background-color: red;
+  color: var(--white);
+}
+
+/* Footer */
+footer {
   text-align: center;
   padding: 15px;
-  margin-top: 40px;
+  background-color: var(--gray);
+  color: var(--white);
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+  .feature-card, .story {
+    width: 90%;
+  }
 }

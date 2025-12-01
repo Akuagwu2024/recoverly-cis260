@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
+  <nav aria-label="Primary">
     <ul class="navbar">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="report.html">Report</a></li>
       <li><a href="search.html">Search</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
@@ -32,9 +33,6 @@
         Built by students, for students — Recoverly is a practical solution to a common campus problem.
         Whether you’ve lost something or found something, this platform helps you take action quickly.
       </p>
-      <p>
-        Our mission is to foster a culture of honesty and helpfulness across the CCC network.
-      </p>
     </section>
 
     <section class="features">
@@ -50,6 +48,30 @@
         <h3>Built for Community</h3>
         <p>Every report helps someone. Every search brings hope. Every recovery builds trust.</p>
       </div>
+    </section>
+
+    <section class="content" aria-labelledby="successStoriesTitle">
+      <h2 id="successStoriesTitle">Success stories</h2>
+      <p>Real recoveries across CCC campuses. Small moments, big relief.</p>
+
+      <div class="stories">
+        <article class="story">
+          <img src="assets/story-laptop.jpg" alt="Student smiling while holding a recovered laptop" class="story-img">
+          <h3 class="story-title">Laptop back to its owner</h3>
+          <p class="story-text">“Found near the library at Malcolm X. Staff helped verify my CCC email and it was back in a day.”</p>
+        </article>
+
+        <article class="story">
+          <img src="assets/story-id.jpg" alt="City Colleges ID card returned to student" class="story-img">
+          <h3 class="story-title">ID card returned</h3>
+          <p class="story-text">“Turned in at Truman’s front desk. Recovery was fast and easy.”</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content" aria-labelledby="counterTitle">
+      <h2 id="counterTitle">Community impact</h2>
+      <p><strong>Items reunited this semester:</strong> <span id="semesterCounter">0</span></p>
     </section>
   </main>
 
