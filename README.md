@@ -34,21 +34,21 @@ The goal is straightforward:
 
 Every day, someone misplaces something important — keys, phones, IDs, books. Recoverly makes it easier to:
 
-- Post a **Lost** or **Found** item
-- Search by **name, location, campus, or category**
-- Connect securely without sharing personal info
-- Share recovery stories to inspire others
-- Track reunited items with a live counter
+- Post a **Lost** or **Found** item  
+- Search by **name, location, campus, or category**  
+- Connect securely without sharing personal info  
+- Share recovery stories to inspire others  
+- Track reunited items with a live counter  
 
 ---
 
 ## Pages
 
-- **Home (`index.html`)** – Overview, success stories, and community counter  
+- **Home (`index.html`)** – Overview, sidebar navigation, success stories, and community counter  
 - **Report (`report.html`)** – Submit a lost/found item (with campus + category + optional CCC email)  
 - **Search (`search.html`)** – Browse and filter listings by status, campus, category, and sort order  
 - **Dashboard (`dashboard.html`)** – Staff-only view to filter, mark items reunited, and delete reports  
-- **Contact (`contact.html`)** – Send feedback or share success (CCC email verification hint)
+- **Contact (`contact.html`)** – Send feedback or share success (CCC email verification hint)  
 
 ---
 
@@ -57,7 +57,7 @@ Every day, someone misplaces something important — keys, phones, IDs, books. R
 - **Frontend:** HTML, CSS (custom theme), JavaScript  
 - **Backend (planned):** Node.js, MongoDB  
 - **Hosting:** GitHub Pages  
-- **Tools:** Visual Studio Code, GitHub Codespaces
+- **Tools:** Visual Studio Code, GitHub Codespaces  
 
 ---
 
@@ -84,6 +84,7 @@ Kennedy-King College is the pilot version, using maroon and gray to reflect its 
 
 ## New Features (Pilot)
 
+- **Sidebar Navigation** – headings on the left; click to reveal each section (About, Search, Report, Community, Stories, Impact)  
 - **Staff Dashboard** – filter by campus/category, mark items reunited, delete reports  
 - **CCC Verification** – optional `@ccc.edu` email check on report/contact forms  
 - **Success Stories** – testimonials with photos to highlight real recoveries  
@@ -94,4 +95,4 @@ Kennedy-King College is the pilot version, using maroon and gray to reflect its 
 
 ## Live Site
 
-[https://Akuagwu2024.github.io/recoverly-cis260](https://Akuagwu2024.github.io/recoverly-ci
+[https://Akuagwu2024.github.io/recoverly-cis260](https://Akuagwu2024.github.io/recoverly-cis260)
