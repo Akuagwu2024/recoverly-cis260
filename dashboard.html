@@ -22,50 +22,52 @@
     <p>Manage lost & found items across City Colleges of Chicago.</p>
   </header>
 
-  <main>
-    <section class="content">
-      <h2>Filters</h2>
-      <div class="filters">
-        <div>
-          <label for="campusFilter">Campus</label>
-          <select id="campusFilter">
-            <option value="all">All campuses</option>
-            <option value="Kennedy-King">Kennedy-King</option>
-            <option value="Harold Washington">Harold Washington</option>
-            <option value="Harry S Truman">Harry S Truman</option>
-            <option value="Malcolm X">Malcolm X</option>
-            <option value="Olive-Harvey">Olive-Harvey</option>
-            <option value="Richard J. Daley">Richard J. Daley</option>
-            <option value="Wilbur Wright">Wilbur Wright</option>
-          </select>
+  <main class="page">
+    <section class="main-content">
+      <section class="content">
+        <h2>Filters</h2>
+        <div class="filters">
+          <div>
+            <label for="campusFilterDash">Campus</label>
+            <select id="campusFilterDash">
+              <option value="all">All campuses</option>
+              <option value="Kennedy-King">Kennedy-King</option>
+              <option value="Harold Washington">Harold Washington</option>
+              <option value="Harry S Truman">Harry S Truman</option>
+              <option value="Malcolm X">Malcolm X</option>
+              <option value="Olive-Harvey">Olive-Harvey</option>
+              <option value="Richard J. Daley">Richard J. Daley</option>
+              <option value="Wilbur Wright">Wilbur Wright</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="categoryFilterDash">Category</label>
+            <select id="categoryFilterDash">
+              <option value="all">All categories</option>
+              <option value="electronics">Electronics</option>
+              <option value="books">Books</option>
+              <option value="clothing">Clothing</option>
+              <option value="accessories">Accessories</option>
+              <option value="ids">IDs</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="statusFilterDash">Status</label>
+            <select id="statusFilterDash">
+              <option value="all">All</option>
+              <option value="lost">Lost</option>
+              <option value="found">Found</option>
+              <option value="reunited">Reunited</option>
+            </select>
+          </div>
         </div>
 
-        <div>
-          <label for="categoryFilter">Category</label>
-          <select id="categoryFilter">
-            <option value="all">All categories</option>
-            <option value="electronics">Electronics</option>
-            <option value="books">Books</option>
-            <option value="clothing">Clothing</option>
-            <option value="accessories">Accessories</option>
-            <option value="ids">IDs</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="statusFilterDash">Status</label>
-          <select id="statusFilterDash">
-            <option value="all">All</option>
-            <option value="lost">Lost</option>
-            <option value="found">Found</option>
-            <option value="reunited">Reunited</option>
-          </select>
-        </div>
-      </div>
-
-      <h2 style="margin-top:20px;">Items</h2>
-      <div id="dashResults" aria-live="polite"></div>
+        <h2 style="margin-top:20px;">Items</h2>
+        <div id="dashResults" aria-live="polite"></div>
+      </section>
     </section>
   </main>
 

@@ -12,6 +12,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="report.html">Report</a></li>
       <li><a href="search.html">Search</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
@@ -21,37 +22,31 @@
     <p>Reach out with questions, ideas, or success stories.</p>
   </header>
 
-  <main>
-    <section class="content">
-      <h2>Send a Message</h2>
-      <form id="contactForm" aria-describedby="contactEmailHelp">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" required placeholder="Full name">
+  <main class="page">
+    <section class="main-content">
+      <section class="content">
+        <h2>Send a message</h2>
+        <form id="contactForm" aria-describedby="contactEmailHelp" novalidate>
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required placeholder="Full name">
 
-        <label for="email">Your Email</label>
-        <input type="email" id="email" name="email" required placeholder="you@example.com" aria-describedby="contactEmailHelp">
-        <small id="contactEmailHelp">Tip: Use your @ccc.edu email so staff can verify you’re part of CCC.</small>
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com" aria-describedby="contactEmailHelp">
+          <small id="contactEmailHelp">Tip: Use your @ccc.edu email so staff can verify you’re part of CCC.</small>
 
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
 
-        <button type="submit" class="btn-primary">Send</button>
-      </form>
+          <button type="submit" class="btn-primary">Send</button>
+        </form>
 
-      <div class="contact-info">
-        <h3>📍 Static Office Address</h3>
-        <p>1234 Recoverly Lane, Suite 202<br>Chicago, IL 60605</p>
-
-        <h3>📞 Static Contact Number</h3>
-        <p>(312) 555-9876</p>
-
-        <h3>🕒 Office Hours</h3>
-        <p>
-          Monday – Friday: 9 AM – 10 PM<br>
-          Saturday: 8 AM – 10 PM<br>
-          Sunday: Closed
-        </p>
-      </div>
+        <div class="content" style="margin-top:20px;">
+          <h2>Our information</h2>
+          <p><strong>Address:</strong> Kennedy-King College, 6301 S. Halsted St, Chicago, IL 60621</p>
+          <p><strong>Phone:</strong> (773) 602-5000</p>
+          <p><strong>Email:</strong> community@ccc.edu</p>
+        </div>
+      </section>
     </section>
   </main>
 

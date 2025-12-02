@@ -1,61 +1,75 @@
 // -----------------------------
+// Sidebar Tab Switching (Homepage)
+// -----------------------------
+function openSection(sectionId) {
+  const contents = document.querySelectorAll(".tabcontent");
+  contents.forEach(c => c.style.display = "none");
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.style.display = "block";
+  }
+}
+
+// -----------------------------
 // Report Form Handling
 // -----------------------------
-document.addEventListener("DOMContentLoaded", () => {
+function initReportForm() {
   const reportForm = document.getElementById("reportForm");
-  if (reportForm) {
-    reportForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+  if (!reportForm) return;
 
-      const itemName = document.getElementById("itemName").value.trim();
-      const status = document.getElementById("status").value;
-      const campus = document.getElementById("campus").value;
-      const category = document.getElementById("category").value;
-      const description = document.getElementById("description").value.trim();
-      const location = document.getElementById("location").value.trim();
-      const email = document.getElementById("reportEmail").value.trim();
+  reportForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-      if (!itemName || !status || !campus || !category || !description || !location) {
-        alert("Please fill out all required fields.");
-        return;
-      }
+    const itemName = reportForm.itemName.value.trim();
+    const status = reportForm.status.value;
+    const campus = reportForm.campus.value;
+    const category = reportForm.category.value;
+    const description = reportForm.description.value.trim();
+    const location = reportForm.location.value.trim();
+    const email = reportForm.reportEmail.value.trim();
 
-      if (email && !email.endsWith("@ccc.edu")) {
-        alert("Please use a valid @ccc.edu email address.");
-        return;
-      }
+    if (!itemName || !status || !campus || !category || !description || !location) {
+      alert("Please fill out all required fields.");
+      return;
+    }
 
-      const item = {
-        itemName,
-        status,
-        campus,
-        category,
-        description,
-        location,
-        email,
-        date: new Date().toLocaleString()
-      };
+    if (email && !email.endsWith("@ccc.edu")) {
+      alert("Please use a valid @ccc.edu email address.");
+      return;
+    }
 
-      let items = JSON.parse(localStorage.getItem("items")) || [];
-      items.push(item);
-      localStorage.setItem("items", JSON.stringify(items));
+    const item = {
+      itemName,
+      status,
+      campus,
+      category,
+      description,
+      location,
+      email,
+      date: new Date().toLocaleString()
+    };
 
-      alert("Report submitted successfully!");
-      reportForm.reset();
-    });
-  }
-});
+    let items = JSON.parse(localStorage.getItem("items")) || [];
+    items.push(item);
+    localStorage.setItem("items", JSON.stringify(items));
+
+    alert("Report submitted successfully!");
+    reportForm.reset();
+  });
+}
 
 // -----------------------------
 // Search Page Handling
 // -----------------------------
-document.addEventListener("DOMContentLoaded", () => {
+function initSearchPage() {
   const searchBox = document.getElementById("searchBox");
   const statusFilter = document.getElementById("statusFilter");
   const campusFilter = document.getElementById("campusFilter");
   const categoryFilter = document.getElementById("categoryFilter");
   const sortOrder = document.getElementById("sortOrder");
   const results = document.getElementById("results");
+
+  if (!results) return;
 
   function renderResults() {
     let items = JSON.parse(localStorage.getItem("items")) || [];
@@ -75,24 +89,22 @@ document.addEventListener("DOMContentLoaded", () => {
       items.sort((a, b) => a.itemName.localeCompare(b.itemName));
     }
 
-    if (results) {
-      results.innerHTML = "";
-      if (items.length === 0) {
-        results.innerHTML = "<p>No items found.</p>";
-      } else {
-        items.forEach(item => {
-          const div = document.createElement("div");
-          div.className = "item-card";
-          div.innerHTML = `
-            <h3>${item.itemName}</h3>
-            <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
-            <p>${item.description}</p>
-            <p><em>Last seen: ${item.location}</em></p>
-            <p><small>Reported: ${item.date}</small></p>
-          `;
-          results.appendChild(div);
-        });
-      }
+    results.innerHTML = "";
+    if (items.length === 0) {
+      results.innerHTML = "<p>No items found.</p>";
+    } else {
+      items.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item-card";
+        div.innerHTML = `
+          <h3>${item.itemName}</h3>
+          <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
+          <p>${item.description}</p>
+          <p><em>Last seen: ${item.location}</em></p>
+          <p><small>Reported: ${item.date}</small></p>
+        `;
+        results.appendChild(div);
+      });
     }
   }
 
@@ -103,54 +115,56 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sortOrder) sortOrder.addEventListener("change", renderResults);
 
   renderResults();
-});
+}
 
 // -----------------------------
 // Dashboard Page Handling
 // -----------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const dashboard = document.getElementById("dashboardItems");
-  if (dashboard) {
+function initDashboard() {
+  const dashboard = document.getElementById("dashResults");
+  if (!dashboard) return;
+
+  function renderDashboard() {
     let items = JSON.parse(localStorage.getItem("items")) || [];
-
-    function renderDashboard() {
-      dashboard.innerHTML = "";
-      if (items.length === 0) {
-        dashboard.innerHTML = "<p>No reports yet.</p>";
-      } else {
-        items.forEach((item, index) => {
-          const div = document.createElement("div");
-          div.className = "item-card";
-          div.innerHTML = `
-            <h3>${item.itemName}</h3>
-            <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
-            <p>${item.description}</p>
-            <p><em>Last seen: ${item.location}</em></p>
-            <p><small>Reported: ${item.date}</small></p>
-            <div class="item-actions">
-              <button class="mark-reunited">Mark Reunited</button>
-              <button class="delete-item">Delete</button>
-            </div>
-          `;
-          div.querySelector(".mark-reunited").addEventListener("click", () => {
-            item.status = "reunited";
-            localStorage.setItem("items", JSON.stringify(items));
-            incrementCounter();
-            renderDashboard();
-          });
-          div.querySelector(".delete-item").addEventListener("click", () => {
-            items.splice(index, 1);
-            localStorage.setItem("items", JSON.stringify(items));
-            renderDashboard();
-          });
-          dashboard.appendChild(div);
+    dashboard.innerHTML = "";
+    if (items.length === 0) {
+      dashboard.innerHTML = "<p>No reports yet.</p>";
+    } else {
+      items.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "item-card";
+        div.innerHTML = `
+          <h3>${item.itemName}</h3>
+          <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
+          <p>${item.description}</p>
+          <p><em>Last seen: ${item.location}</em></p>
+          <p><small>Reported: ${item.date}</small></p>
+          <div class="item-actions">
+            <button class="mark-reunited">Mark Reunited</button>
+            <button class="delete-item">Delete</button>
+          </div>
+        `;
+        div.querySelector(".mark-reunited").addEventListener("click", () => {
+          item.status = "reunited";
+          let items = JSON.parse(localStorage.getItem("items")) || [];
+          items[index] = item;
+          localStorage.setItem("items", JSON.stringify(items));
+          incrementCounter();
+          renderDashboard();
         });
-      }
+        div.querySelector(".delete-item").addEventListener("click", () => {
+          let items = JSON.parse(localStorage.getItem("items")) || [];
+          items.splice(index, 1);
+          localStorage.setItem("items", JSON.stringify(items));
+          renderDashboard();
+        });
+        dashboard.appendChild(div);
+      });
     }
-
-    renderDashboard();
   }
-});
+
+  renderDashboard();
+}
 
 // -----------------------------
 // Community Counter
@@ -163,28 +177,50 @@ function incrementCounter() {
   if (counter) counter.textContent = count;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initCounter() {
   const counter = document.getElementById("semesterCounter");
   if (counter) {
     counter.textContent = localStorage.getItem("reunitedCount") || "0";
   }
-});
-
-// -----------------------------
-// Sidebar Tab Switching (Homepage)
-// -----------------------------
-function openSection(sectionId) {
-  const contents = document.querySelectorAll(".tabcontent");
-  contents.forEach(c => c.style.display = "none");
-  const section = document.getElementById(sectionId);
-  if (section) {
-    section.style.display = "block";
-  }
 }
 
-// Show "About" by default on homepage
+// -----------------------------
+// Contact Form Handling
+// -----------------------------
+function initContactForm() {
+  const contactForm = document.getElementById("contactForm");
+  if (!contactForm) return;
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    alert("Message sent successfully!");
+    contactForm.reset();
+  });
+}
+
+// -----------------------------
+// Initialize all pages
+// -----------------------------
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("about")) {
     openSection("about");
   }
+  initReportForm();
+  initSearchPage();
+  initDashboard();
+  initCounter();
+  initContactForm();
 });
