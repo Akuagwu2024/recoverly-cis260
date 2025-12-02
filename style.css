@@ -70,7 +70,7 @@ header p { margin: 0; font-size: clamp(14px, 2vw, 18px); }
   min-height: 0;
 }
 
-/* Sidebar (unchanged structure, tuned color) */
+/* Sidebar */
 .sidebar {
   width: 22%;
   background-color: var(--sidebar-gray);
@@ -91,7 +91,7 @@ header p { margin: 0; font-size: clamp(14px, 2vw, 18px); }
 .tablink:hover, .tablink:focus { background-color: var(--maroon-dark); }
 .tablink:focus-visible { outline: 3px solid var(--focus); }
 
-/* Main content (light gray area) */
+/* Main content */
 .main-content {
   width: 78%;
   padding: 20px;
@@ -104,6 +104,24 @@ header p { margin: 0; font-size: clamp(14px, 2vw, 18px); }
   border: 1px solid #dddddf;
 }
 .tabcontent { display: none; }
+
+/* --- NEW: Identity sections (About, Culture, Vision, Mission) --- */
+#about h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  color: var(--maroon);
+  font-size: 1.4em;
+}
+#about p {
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+#about h2:first-of-type {
+  margin-top: 0; /* keep About Recoverly tight at the top */
+}
+#about p:last-of-type {
+  margin-bottom: 0; /* avoid extra gap after Mission */
+}
 
 /* Search controls */
 .search-box {
@@ -139,7 +157,7 @@ small { display: block; margin-top: 6px; color: #666; }
 .btn-primary:hover, .btn-primary:focus { background-color: var(--maroon-dark); }
 .btn-primary:focus-visible { outline: 3px solid var(--focus); }
 
-/* Footer (sticky bottom) */
+/* Footer */
 footer {
   text-align: center;
   padding: 16px;
