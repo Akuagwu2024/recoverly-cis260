@@ -62,7 +62,6 @@ function initReportForm() {
 // Search Page Handling
 // -----------------------------
 function initSearchPage() {
-  const searchForm = document.getElementById("searchForm");
   const searchBox = document.getElementById("searchBox");
   const statusFilter = document.getElementById("statusFilter");
   const campusFilter = document.getElementById("campusFilter");
@@ -109,16 +108,11 @@ function initSearchPage() {
     }
   }
 
-  // Trigger search when typing, changing filters, or submitting the form
   if (searchBox) searchBox.addEventListener("input", renderResults);
   if (statusFilter) statusFilter.addEventListener("change", renderResults);
   if (campusFilter) campusFilter.addEventListener("change", renderResults);
   if (categoryFilter) categoryFilter.addEventListener("change", renderResults);
   if (sortOrder) sortOrder.addEventListener("change", renderResults);
-  if (searchForm) searchForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-    renderResults();
-  });
 
   renderResults();
 }
@@ -137,4 +131,96 @@ function initDashboard() {
       dashboard.innerHTML = "<p>No reports yet.</p>";
     } else {
       items.forEach((item, index) => {
-        const div = document.createElement
+        const div = document.createElement("div");
+        div.className = "item-card";
+        div.innerHTML = `
+          <h3>${item.itemName}</h3>
+          <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
+          <p>${item.description}</p>
+          <p><em>Last seen: ${item.location}</em></p>
+          <p><small>Reported: ${item.date}</small></p>
+          <div class="item-actions">
+            <button class="mark-reunited">Mark Reunited</button>
+            <button class="delete-item">Delete</button>
+          </div>
+        `;
+        div.querySelector(".mark-reunited").addEventListener("click", () => {
+          item.status = "reunited";
+          let items = JSON.parse(localStorage.getItem("items")) || [];
+          items[index] = item;
+          localStorage.setItem("items", JSON.stringify(items));
+          incrementCounter();
+          renderDashboard();
+        });
+        div.querySelector(".delete-item").addEventListener("click", () => {
+          let items = JSON.parse(localStorage.getItem("items")) || [];
+          items.splice(index, 1);
+          localStorage.setItem("items", JSON.stringify(items));
+          renderDashboard();
+        });
+        dashboard.appendChild(div);
+      });
+    }
+  }
+
+  renderDashboard();
+}
+
+// -----------------------------
+// Community Counter
+// -----------------------------
+function incrementCounter() {
+  let count = parseInt(localStorage.getItem("reunitedCount") || "0", 10);
+  count++;
+  localStorage.setItem("reunitedCount", count);
+  const counter = document.getElementById("semesterCounter");
+  if (counter) counter.textContent = count;
+}
+
+function initCounter() {
+  const counter = document.getElementById("semesterCounter");
+  if (counter) {
+    counter.textContent = localStorage.getItem("reunitedCount") || "0";
+  }
+}
+
+// -----------------------------
+// Contact Form Handling
+// -----------------------------
+function initContactForm() {
+  const contactForm = document.getElementById("contactForm");
+  if (!contactForm) return;
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+
+    if (!name || !email || !message) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    alert("Message sent successfully!");
+    contactForm.reset();
+  });
+}
+
+// -----------------------------
+// Initialize all pages
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("about")) {
+    openSection("about");
+  }
+  initReportForm();
+  initSearchPage();
+  initDashboard();
+  initCounter();
+  initContactForm();
+});
