@@ -59,7 +59,7 @@ function initReportForm() {
 }
 
 // -----------------------------
-// Search Page Handling (form + submit button)
+// Search Page Handling
 // -----------------------------
 function initSearchPage() {
   const searchForm = document.getElementById("searchForm");
@@ -109,36 +109,6 @@ function initSearchPage() {
     }
   }
 
-  // ✅ Handle form submission like Report page
   if (searchForm) {
     searchForm.addEventListener("submit", function(e) {
       e.preventDefault();
-      alert("Search submitted successfully!");
-      renderResults();
-    });
-  }
-}
-
-// -----------------------------
-// Dashboard Page Handling
-// -----------------------------
-function initDashboard() {
-  const dashboard = document.getElementById("dashResults");
-  if (!dashboard) return;
-
-  function renderDashboard() {
-    let items = JSON.parse(localStorage.getItem("items")) || [];
-    dashboard.innerHTML = "";
-    if (items.length === 0) {
-      dashboard.innerHTML = "<p>No reports yet.</p>";
-    } else {
-      items.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "item-card";
-        div.innerHTML = `
-          <h3>${item.itemName}</h3>
-          <p class="item-meta">${item.status} | ${item.campus} | ${item.category}</p>
-          <p>${item.description}</p>
-          <p><em>Last seen: ${item.location}</em></p>
-          <p><small>Reported: ${item.date}</small></p>
-          <div
