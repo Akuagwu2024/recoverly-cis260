@@ -55,6 +55,7 @@ function initReportForm() {
 
     alert("Report submitted successfully!");
     reportForm.reset();
+    updateImpact();
   });
 }
 
@@ -112,3 +113,106 @@ function initSearchPage() {
   if (searchForm) {
     searchForm.addEventListener("submit", function(e) {
       e.preventDefault();
+      renderResults();
+    });
+  }
+}
+
+// -----------------------------
+// Contact Form Handling
+// -----------------------------
+function initContactForm() {
+  const contactForm = document.getElementById("contactForm");
+  if (!contactForm) return;
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Message sent successfully! (Prototype demo)");
+    contactForm.reset();
+  });
+}
+
+// -----------------------------
+// Dashboard Handling
+// -----------------------------
+function initDashboard() {
+  const dashResults = document.getElementById("dashResults");
+  if (!dashResults) return;
+
+  function renderDashboard() {
+    let items = JSON.parse(localStorage.getItem("items")) || [];
+    const campus = document.getElementById("campusFilterDash").value;
+    const category = document.getElementById("categoryFilterDash").value;
+    const status = document.getElementById("statusFilterDash").value;
+
+    items = items.filter(item => {
+      return (campus === "all" || item.campus === campus) &&
+             (category === "all" || item.category === category) &&
+             (status === "all" || item.status === status);
+    });
+
+    dashResults.innerHTML = "";
+    if (items.length === 0) {
+      dashResults.innerHTML = "<p>No items found.</p>";
+    } else {
+      items.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = "item-card";
+        div.innerHTML = `
+          <h3>${item.itemName}</h3>
+          <p>${item.status} | ${item.campus} | ${item.category}</p>
+          <p>${item.description}</p>
+          <button onclick="markReunited(${idx})">Mark as Reunited</button>
+          <button onclick="deleteItem(${idx})">Delete Item</button>
+        `;
+        dashResults.appendChild(div);
+      });
+    }
+  }
+
+  document.getElementById("campusFilterDash").addEventListener("change", renderDashboard);
+  document.getElementById("categoryFilterDash").addEventListener("change", renderDashboard);
+  document.getElementById("statusFilterDash").addEventListener("change", renderDashboard);
+
+  renderDashboard();
+}
+
+function markReunited(index) {
+  let items = JSON.parse(localStorage.getItem("items")) || [];
+  if (items[index]) {
+    items[index].status = "reunited";
+    localStorage.setItem("items", JSON.stringify(items));
+    updateImpact();
+    initDashboard();
+  }
+}
+
+function deleteItem(index) {
+  let items = JSON.parse(localStorage.getItem("items")) || [];
+  items.splice(index, 1);
+  localStorage.setItem("items", JSON.stringify(items));
+  updateImpact();
+  initDashboard();
+}
+
+// -----------------------------
+// Community Impact Counter
+// -----------------------------
+function updateImpact() {
+  let items = JSON.parse(localStorage.getItem("items")) || [];
+  const reunitedCount = items.filter(i => i.status === "reunited").length;
+  const counter = document.getElementById("semesterCounter");
+  if (counter) counter.textContent = reunitedCount;
+}
+
+// -----------------------------
+// Default Initialization
+// -----------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  openSection("about");       // show homepage by default
+  initReportForm();
+  initSearchPage();
+  initContactForm();
+  initDashboard();
+  updateImpact();
+});
